@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <nav>
       <ul>
@@ -13,6 +13,11 @@ const NavBar = () => {
         <li>
           <Link to="/new-mailbox">New Mailbox</Link>
         </li>
+        {props.mailboxes.length > 0 && (
+          <li>
+            <Link to="/new-letter">New Letter</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

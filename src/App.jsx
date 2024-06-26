@@ -4,11 +4,13 @@ import NavBar from "./components/NavBar";
 import Mailboxes from "./components/MailboxList";
 import MailboxForm from "./components/MailboxForm";
 import MailboxDetails from "./components/MailboxDetails";
+import LetterForm from "./components/LetterForm";
 
 const App = () => {
   const navigate = useNavigate();
 
   const [mailboxes, setMailboxes] = useState([]);
+  const [letters, setLetters] = useState([]);
 
   const addBox = (newBox) => {
     newBox._id = mailboxes.length + 1;
@@ -16,9 +18,13 @@ const App = () => {
     navigate("/mailboxes");
   };
 
+  const addLetter = (newLetter) => {
+    setLetters([...letters, newLetter]);
+  };
+
   return (
     <>
-      <NavBar />
+      <NavBar mailboxes={mailboxes} />
       <Routes>
         <Route
           path="/"
@@ -32,7 +38,11 @@ const App = () => {
         <Route path="new-mailbox" element={<MailboxForm addBox={addBox} />} />
         <Route
           path="mailboxes/:mailboxId"
-          element={<MailboxDetails mailboxes={mailboxes} />}
+          element={<MailboxDetails mailboxes={mailboxes} letters={letters} />}
+        />
+        <Route
+          path="new-letter"
+          element={<LetterForm mailboxes={mailboxes} addLetter={addLetter} />}
         />
       </Routes>
     </>
