@@ -12,7 +12,6 @@ const LetterForm = (props) => {
 
   function handleChange(e) {
     setForm({ ...form, [e.target.id]: e.target.value });
-    console.log(e.target.value);
   }
 
   function handleSubmit(e) {

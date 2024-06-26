@@ -7,8 +7,9 @@ const MailboxDetails = (props) => {
     (box) => box._id === Number(mailboxId)
   );
   const selectedLetters = props.letters.filter(
-    (letter) => letter.mailboxId === Number(mailboxId)
+    (letter) => Number(letter.mailboxId) === Number(mailboxId)
   );
+  console.log(selectedLetters);
   return (
     <>
       <section>
@@ -20,6 +21,14 @@ const MailboxDetails = (props) => {
 
       <section>
         <h2>Letters</h2>
+        <ul>
+          {selectedLetters.map((letter, index) => (
+            <li key={index}>
+              <p>Dear {letter.recipient},</p>
+              <p>{letter.message}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );
